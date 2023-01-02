@@ -51,7 +51,12 @@ void CellEditor::CreateEditBox(HWND hWnd, NMLISTVIEW* _lParam)
 	SetFocus(this->hEditable);								   // Новий фокус
 
 	// Замініть віконну процедуру, нова процедура - SubClass_ListView_WndProc
-	wpOld = (WNDPROC)SetWindowLong(this->hEditable, GWLP_WNDPROC, (LONG)CallEditBoxWndProc);
+	wpOld = (WNDPROC)SetWindowLongPtr(this->hEditable, GWLP_WNDPROC, (LONG_PTR)CallEditBoxWndProc);
+
+	// Збереження
+	SetProp(this->hEditable, L"WP_OLD", (HANDLE)wpOld);
+	SetProp(this->hEditable, L"ITEM", (HANDLE)_lParam->iItem);
+	SetProp(this->hEditable, L"SUBITEM", (HANDLE)_lParam->iSubItem);
 }
 
 
@@ -93,7 +98,7 @@ LRESULT CellEditor::EditBoxWndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM l
 		RemoveProp(thisPtr->hEditable, L"ITEM");
 		RemoveProp(thisPtr->hEditable, L"SUBITEM");
 
-		SetWindowLongPtr(thisPtr->hEditable, GWLP_WNDPROC, (LONG)GetProp(thisPtr->hEditable, L"WP_OLD"));
+		SetWindowLong(thisPtr->hEditable, GWLP_WNDPROC, (LONG)GetProp(thisPtr->hEditable, L"WP_OLD"));
 		hEditable = NULL;
 		break;
 	default:

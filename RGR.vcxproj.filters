@@ -33,15 +33,6 @@
     <ClInclude Include="RGR.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DataAndFiles.h">
-      <Filter>Header Files\Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="Dialog.h">
-      <Filter>Header Files\Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="MyTable.h">
-      <Filter>Header Files\Classes</Filter>
-    </ClInclude>
     <ClInclude Include="SortState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -51,10 +42,19 @@
     <ClInclude Include="resource1.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CellEditor.h">
+    <ClInclude Include="DataAndFiles.h">
+      <Filter>Header Files\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Dialog.h">
+      <Filter>Header Files\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="MyTable.h">
       <Filter>Header Files\Classes</Filter>
     </ClInclude>
     <ClInclude Include="toolbar.h">
+      <Filter>Header Files\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="CellEditor.h">
       <Filter>Header Files\Classes</Filter>
     </ClInclude>
   </ItemGroup>
