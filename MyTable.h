@@ -4,7 +4,7 @@
 #pragma comment (lib, "comctl32.lib")
 #include <string>
 #include <vector>
-#include "SortState.h"
+#include "Sort.h"
 
 using namespace std;
 
@@ -12,7 +12,7 @@ class MyTableClass
 {
 private:
 	HWND hWndList;
-	SortState order;
+	Sort order;
 	int selectedCol;
 	vector<wstring> columns;
 	vector<vector<wstring>> rows;
@@ -23,7 +23,7 @@ private:
 	void AddRow(int, int, vector<wstring>);
 	void FillTable(LPWSTR);
 	void Clear();
-	void HandleSortState(LPARAM);
+	void HandleSort(LPARAM);
 	vector<wstring> GetEntitiesStrings();
 public:
 	MyTableClass();

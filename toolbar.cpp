@@ -71,7 +71,7 @@ void ToolBar::OnNotify(HWND hWnd, WPARAM wParam, LPARAM lParam)
         {
 
         case ID_TOOL_OPEN:
-            lstrcpy(lpttt->szText, L"Выдкрити...");
+            lstrcpy(lpttt->szText, L"Відкрити...");
             break;
 
         case ID_TOOL_SAVE:

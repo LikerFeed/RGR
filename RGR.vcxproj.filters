@@ -33,7 +33,7 @@
     <ClInclude Include="RGR.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SortState.h">
+    <ClInclude Include="Sort.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="TextChange.h">
@@ -98,8 +98,6 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram.cd">
-      <Filter>Header Files</Filter>
-    </None>
+    <None Include="IncludeFileDependencies1.dgml" />
   </ItemGroup>
 </Project>

@@ -1,6 +1,6 @@
 #pragma once
 
-enum class SortState
+enum class Sort
 {
 	Unsorted,
 	Ascending,

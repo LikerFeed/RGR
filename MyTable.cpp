@@ -13,7 +13,7 @@ MyTableClass::MyTableClass()
 	this->rcl = { };
 	this->hWndList = NULL;
 	this->selectedCol = 0;
-	this->order = SortState::Unsorted;
+	this->order = Sort::Unsorted;
 	thisPtr = this;
 }
 
@@ -33,7 +33,7 @@ MyTableClass::MyTableClass(HWND hWndParent)
 		hWndParent, (HMENU)IDC_LISTVIEW, hInst, 0);
 	ListView_SetExtendedListViewStyle(this->hWndList, LVS_EX_FULLROWSELECT);
 	this->selectedCol = 0;
-	this->order = SortState::Unsorted;
+	this->order = Sort::Unsorted;
 	thisPtr = this;
 	this->SetFont(hWndParent);
 }
@@ -155,10 +155,10 @@ void MyTableClass::OnColumnClick(LPARAM lParam)
 	auto pLVInfo = (LPNMLISTVIEW)lParam;
 	const int nSortColumn = pLVInfo->iSubItem;
 
-	if (this->selectedCol != nSortColumn) this->order = SortState::Ascending;
+	if (this->selectedCol != nSortColumn) this->order = Sort::Ascending;
 	this->selectedCol = nSortColumn;
 
-	this->HandleSortState(lParam); // сортування списку
+	this->HandleSort(lParam); // сортування списку
 }
 
 void MyTableClass::OnSize(HWND hWnd)
@@ -190,24 +190,24 @@ void MyTableClass::OnFileSaveAs(HWND hWnd)
 	if (fileName) DataAndFiles::SaveFile(fileName, lines);
 }
 
-void MyTableClass::HandleSortState(LPARAM lParam)
+void MyTableClass::HandleSort(LPARAM lParam)
 {
 	auto pLVInfo = (LPNMLISTVIEW)lParam;
 	auto lParamSort = 1 + pLVInfo->iSubItem;
 
 	switch (this->order)
 	{
-	case SortState::Unsorted:
+	case Sort::Unsorted:
 		FillTable(DataAndFiles::fileName);
-		this->order = SortState::Ascending;
+		this->order = Sort::Ascending;
 		break;
-	case SortState::Ascending:
+	case Sort::Ascending:
 		ListView_SortItemsEx(pLVInfo->hdr.hwndFrom, CallBackSortAsc, lParamSort);
-		this->order = SortState::Descending;
+		this->order = Sort::Descending;
 		break;
-	case SortState::Descending:
+	case Sort::Descending:
 		ListView_SortItemsEx(pLVInfo->hdr.hwndFrom, CallBackSortDesc, lParamSort);
-		this->order = SortState::Unsorted;
+		this->order = Sort::Unsorted;
 		break;
 	default:
 		string message = "Unknown sorting state: " + to_string((int)this->order);
