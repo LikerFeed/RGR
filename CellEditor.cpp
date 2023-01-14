@@ -37,12 +37,15 @@ void CellEditor::CreateEditBox(HWND hWnd, NMLISTVIEW* _lParam)
 	ListView_GetSubItemRect(table->GetHWND(), _lParam->iItem, _lParam->iSubItem, LVIR_LABEL, &r);
 
 
+	int width = r.right - r.left;
+	int height = r.bottom - r.top;
+
 	this->hEditable = CreateWindowEx(0, WC_EDIT,
 		table->GetCell(_lParam->iItem, _lParam->iSubItem).c_str(),
 		WS_CHILD | WS_VISIBLE | WS_BORDER | ES_LEFT,
 		r.left, r.top,
-		r.right - r.left,
-		r.bottom - r.top,
+		width,
+		height,
 		table->GetHWND(),
 		NULL, hInst, 0);
 
@@ -120,7 +123,7 @@ void CellEditor::OnDestroyWindow()
 
 void CellEditor::OnUndo()
 {
-	if (changes.size() > 0)
+	if (changes.size() > 0) 
 	{
 		auto change = changes[changes.size() - 1];
 		table->SetText(change.iCol, change.iRow, change.text);

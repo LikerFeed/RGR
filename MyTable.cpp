@@ -8,6 +8,20 @@ static MyTableClass* thisPtr = nullptr;
 static int CALLBACK CallBackSortAsc(LPARAM, LPARAM, LPARAM);
 static int CALLBACK CallBackSortDesc(LPARAM, LPARAM, LPARAM);
 
+int numberSortingAsc(void* a, void* b) {
+	int result = 0;
+	if (a > b) result = 1;
+	else if (a < b) result = -1;
+	return result;
+}
+
+int numberSortingDesc(void* a, void* b) {
+	int result = 0;
+	if (a < b) result = 1;
+	else if (a > b) result = -1;
+	return result;
+}
+
 MyTableClass::MyTableClass()
 {
 	this->rcl = { };
@@ -17,12 +31,12 @@ MyTableClass::MyTableClass()
 	thisPtr = this;
 }
 
+int x = 0, y = 37;
+
 MyTableClass::MyTableClass(HWND hWndParent)
 {
 	MyTableClass();
 	const auto hInst = (HINSTANCE)GetWindowLongPtr(hWndParent, GWLP_HINSTANCE);
-
-	int x = 0, y = 37;
 	GetClientRect(hWndParent, &rcl);
 	int listWidth = rcl.right - rcl.left;
 	int listHeight = rcl.bottom - rcl.top;
@@ -49,10 +63,11 @@ HWND MyTableClass::GetHWND()
 
 void MyTableClass::SetFont(HWND hWnd)
 {
+	int fontSize = 20;
 	LOGFONT logFont;
 	HFONT hFont;
 	memset(&logFont, 0, sizeof(LOGFONT));
-	logFont.lfHeight = 20;
+	logFont.lfHeight = fontSize;
 	wcscpy_s(logFont.lfFaceName, L"Consolas");
 	hFont = CreateFontIndirect(&logFont);
 
@@ -167,7 +182,7 @@ void MyTableClass::OnSize(HWND hWnd)
 	if (this->hWndList)
 	{
 		GetClientRect(hWnd, &rc);
-		MoveWindow(this->hWndList, 0, 37, rc.right - rc.left, rc.bottom - rc.top - 37, FALSE);
+		MoveWindow(this->hWndList, 0, y, rc.right - rc.left, rc.bottom - rc.top - y, FALSE);
 	}
 }
 
@@ -262,18 +277,13 @@ int MyTableClass::CompareListItemsAsc(LPARAM lParam1, LPARAM lParam2)
 	double numItem1, numItem2;
 	bool isNumberSorting = DataAndFiles::DoubleTryParse(strItem1, &numItem1)
 		&& DataAndFiles::DoubleTryParse(strItem2, &numItem2);
-
 	if (isNumberSorting)
 	{
-		if (numItem1 > numItem2) return 1;
-		else if (numItem1 < numItem2) return -1;
-		else return 0;
+		return numberSortingAsc(&numItem1, &numItem2);
 	}
 	else
 	{
-		if (strItem1 > strItem2) return 1;
-		else if (strItem1 < strItem2) return -1;
-		else return 0;
+		return numberSortingAsc(&strItem1, &strItem2);
 	}
 }
 
@@ -288,15 +298,11 @@ int MyTableClass::CompareListItemsDesc(LPARAM lParam1, LPARAM lParam2)
 
 	if (isNumberSorting)
 	{
-		if (numItem1 < numItem2) return 1;
-		else if (numItem1 > numItem2) return -1;
-		else return 0;
+		return numberSortingDesc(&numItem1, &numItem2);
 	}
 	else
 	{
-		if (strItem1 < strItem2) return 1;
-		else if (strItem1 > strItem2) return -1;
-		else return 0;
+		return numberSortingDesc(&strItem1, &strItem2);
 	}
 }
 

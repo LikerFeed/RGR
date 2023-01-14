@@ -11,32 +11,31 @@ void ToolBar::OnCreate(HWND hWnd, HINSTANCE hInst)
 {
     TBBUTTON tbb[3]; //для Toolbar з трьома кнопками
     ZeroMemory(tbb, sizeof(tbb));
-    tbb[0].iBitmap = 0;
-    tbb[0].fsState = TBSTATE_ENABLED;
-    tbb[0].fsStyle = TBSTYLE_BUTTON; //тип елементу - кнопка
+    for (int i = 0; i <= 2; i++) {
+        tbb[i].iBitmap = i;
+        tbb[i].fsState = TBSTATE_ENABLED;
+        tbb[i].fsStyle = TBSTYLE_BUTTON; //тип елементу - кнопка
+    }
+
     tbb[0].idCommand = ID_TOOL_OPEN; //цей ID буде у повідомленні WM_COMMAND
-
-    tbb[1].iBitmap = 1;
-    tbb[1].fsState = TBSTATE_ENABLED;
-    tbb[1].fsStyle = TBSTYLE_BUTTON;
     tbb[1].idCommand = ID_TOOL_SAVE;
-
-    tbb[2].iBitmap = 2;
-    tbb[2].fsState = TBSTATE_ENABLED;
-    tbb[2].fsStyle = TBSTYLE_BUTTON;
     tbb[2].idCommand = ID_TOOL_SAVEAS;
 
-    SendMessage(hWndToolBar, TB_ADDBUTTONS, 3, (LPARAM)&tbb);
+    int tbbSize = 3; // size of tbb
+    int buttonPixels = 24; // pixels in one BITMAP button
+
+    SendMessage(hWndToolBar, TB_ADDBUTTONS, tbbSize, (LPARAM)&tbb);
+
 
     hWndToolBar = CreateToolbarEx(hWnd, //батьківське вікно
         WS_CHILD | WS_VISIBLE | WS_BORDER | WS_CLIPSIBLINGS | CCS_TOP | TBSTYLE_TOOLTIPS,
         IDC_TOOLBAR, //ID дочірнього вікна Toolbar
-        3,
+        tbbSize,
         hInst,
         IDB_BITMAP1,
         tbb,            //масив опису кнопок
-        3,              //кількість кнопок
-        24, 24, 24, 24, //розташування та розміри
+        tbbSize,        //кількість кнопок
+        buttonPixels, buttonPixels, buttonPixels, buttonPixels, //розташування та розміри
         sizeof(TBBUTTON));
 }
 

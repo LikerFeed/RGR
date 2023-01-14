@@ -19,27 +19,15 @@
     <Filter Include="Source Files\Classes">
       <UniqueIdentifier>{d015b209-01e7-42c9-bd51-b08e8301cfe7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\RGR">
+      <UniqueIdentifier>{9da48515-0449-4592-80e2-ee25db70cff4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Resource">
+      <UniqueIdentifier>{71b49d1f-5924-44c7-8063-93d93e93980f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="targetver.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Resource.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RGR.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Sort.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TextChange.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="resource1.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DataAndFiles.h">
@@ -56,6 +44,24 @@
     </ClInclude>
     <ClInclude Include="CellEditor.h">
       <Filter>Header Files\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Header Files\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="resource1.h">
+      <Filter>Header Files\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="RGR.h">
+      <Filter>Header Files\RGR</Filter>
+    </ClInclude>
+    <ClInclude Include="Sort.h">
+      <Filter>Header Files\RGR</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TextChange.h">
+      <Filter>Header Files\RGR</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
